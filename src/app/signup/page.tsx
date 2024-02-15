@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import {toast} from 'react-hot-toast'
-import axios from 'axios'
+import { toast } from "react-hot-toast";
+import axios from "axios";
 
 function Signup() {
   const [user, setUser] = useState({
@@ -12,15 +12,24 @@ function Signup() {
     email: "",
     password: "",
   });
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  const onSignup = async()=> {
-
-  }
+  const onSignup = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.post("/api/users/signup", user);
+      if (response.data.success) {
+        toast.success("Signup successfull");
+        setLoading(false)
+      }
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <div className="w-[40%] border-2 border-gray-500 mx-auto mt-10 rounded-md p-10">
-      <h1 className="text-center text-lg font-bold mb-5">Signup</h1>
+      <h1 className="text-center text-lg font-bold mb-5">{loading ? 'Processing':'Signup'}</h1>
       <form className="flex flex-col gap-4">
         <div className="flex flex-col">
           <label htmlFor="username" className="mb-2 text-lg">
@@ -61,7 +70,10 @@ function Signup() {
             className="border-2 border-gray-400 px-3 py-2 rounded-md"
           />
         </div>
-        <button className="py-2 px-1 border-2 border-black bg-orange-200 font-bold rounded-md mt-3" onClick={onSignup}>
+        <button
+          className="py-2 px-1 border-2 border-black bg-orange-200 font-bold rounded-md mt-3"
+          onClick={onSignup}
+        >
           Signup
         </button>
         <div className="flex justify-center items-center text-blue-500">

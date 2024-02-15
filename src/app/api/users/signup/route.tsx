@@ -12,7 +12,8 @@ connect()
 
 
 export async function POST(request:NextRequest) {
-  const reqBody = await request.json()
+  try {
+    const reqBody = await request.json()
   const {username,email,password} = reqBody;
 
   if(!username || !email || !password) {
@@ -34,6 +35,10 @@ export async function POST(request:NextRequest) {
   const savedUser = await newUser.save()
 
   return NextResponse.json(new ApiResponse(201,savedUser,'Signup successfull'))
+  } catch (error) {
+    return new ApiError(500, 'Internal server error');
+  }
+  
 
 
   
