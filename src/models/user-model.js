@@ -1,19 +1,20 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+
 
 const userSchema = new mongoose.Schema({
     username:{
         type:String,
-        required:[true,'username is required'],
+        required:true,
         unique:true
     },
     email:{
         type:String,
-        required:[true,'Email is required'],
+        required:true,
         unique:true
     },
     password:{
         type:String,
-        required:[true,'Password is required']
+        required:true
     },
     isVarified:{
         type:Boolean,
@@ -27,8 +28,9 @@ const userSchema = new mongoose.Schema({
     forgotPasswordTokenExpiry:Date,
     varifyToken:String,
     varifyTokenExpiry:Date
+},{timestamps:true});
 
-});
 
 
-export const User = mongoose.model.users || mongoose.model('User', userSchema);
+const User = mongoose.models.User || mongoose.model('User', userSchema);
+export default User;
