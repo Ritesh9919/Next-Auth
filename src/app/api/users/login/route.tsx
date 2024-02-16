@@ -1,13 +1,15 @@
 import axios from 'axios'
+import {connect} from '@/dbConfig/dbConfig'
 import User from '@/models/user-model'
-import {useRouter} from 'next/navigation'
-import {toast} from 'react-hot-toast'
 import {NextRequest,NextResponse} from 'next/server'
 import { ApiError } from '@/helpers/ApiError'
-import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import {generateVarifyToken} from '@/helpers/generateVarifyToken'
 import { ApiResponse } from '@/helpers/ApiResponse'
+
+
+
+connect()
 
 
 export async function POST(request:NextRequest) {
@@ -25,7 +27,7 @@ export async function POST(request:NextRequest) {
 
        const isPasswordCurrect = await bcrypt.compare(password, user.password)
        if(!isPasswordCurrect) {
-        throw new ApiError(401, 'Invalid Credential')
+        throw new ApiError(401, 'Invalid Credential');
        }
 
        // generate token
