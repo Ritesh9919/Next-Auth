@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 import { Toaster } from "react-hot-toast";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,9 +15,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
     <html lang="en">
       <body className={`inter.className`}>
+        <div className="h-[70px] bg-blue-500 text-white flex justify-between items-center">
+          <div className="text-lg ml-5 font-bold">Ritesh Maurya</div>
+          <ul className="flex gap-5 text-lg mr-5">
+            <Link href='/signup'><li>Sign Up</li></Link>
+            <Link href='/login'><li>Log In</li></Link>
+            <li>Log Out</li>
+          </ul>
+        </div>
         <Toaster position="top-right" reverseOrder={true} />
         {children}
       </body>
