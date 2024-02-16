@@ -35,8 +35,8 @@ export async function POST(request:NextRequest) {
   const savedUser = await newUser.save()
 
   return NextResponse.json(new ApiResponse(201,savedUser,'Signup successfull'))
-  } catch (error) {
-    return new ApiError(500, 'Internal server error');
+  } catch (error:any) {
+    return new ApiError(500, error.message);
   }
   
 

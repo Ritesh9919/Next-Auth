@@ -39,7 +39,7 @@ export async function POST(request:NextRequest) {
        return response
 
 
-    } catch (error) {
-        throw new ApiError(500, 'Internal server error');
+    } catch (error:any) {
+        throw new ApiError(500, error.message);
     }
 }
