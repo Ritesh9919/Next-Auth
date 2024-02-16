@@ -11,7 +11,7 @@ function Login() {
 
   return (
     <div className="w-[40%] border-2 border-gray-500 mx-auto mt-10 rounded-md p-10">
-      <h1 className="text-center text-lg font-bold mb-5">Signup</h1>
+      <h1 className="text-center text-lg font-bold mb-5">Login</h1>
       <form className="flex flex-col gap-4">
         <div className="flex flex-col">
           <label htmlFor="email" className="mb-2 text-lg">

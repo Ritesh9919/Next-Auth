@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 import axios from "axios";
 
 function Signup() {
+  const router = useRouter()
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -15,22 +16,25 @@ function Signup() {
   const [loading, setLoading] = useState(false);
 
   const onSignup = async () => {
-    setLoading(true);
     try {
+      setLoading(true);
       const response = await axios.post("/api/users/signup", user);
-      if (response.data.success) {
-        toast.success("Signup successfull");
-        setLoading(false)
+      if(response.data.success) {
+        toast.success(response.data.message);
+        router.push('/login')
       }
+      
     } catch (error: any) {
       toast.error(error.message);
+    } finally{
+      setLoading(false)
     }
   };
 
   return (
     <div className="w-[40%] border-2 border-gray-500 mx-auto mt-10 rounded-md p-10">
       <h1 className="text-center text-lg font-bold mb-5">{loading ? 'Processing':'Signup'}</h1>
-      <form className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4">
         <div className="flex flex-col">
           <label htmlFor="username" className="mb-2 text-lg">
             username
@@ -84,7 +88,7 @@ function Signup() {
             <Link href="/login">Visit Login Page</Link>
           </span>
         </div>
-      </form>
+      </div>
     </div>
   );
 }
