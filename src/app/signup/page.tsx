@@ -82,9 +82,6 @@ function Signup() {
         </button>
         <div className="flex justify-center items-center text-blue-500">
           <span>
-            <Link href="/">Forgot Password | </Link>
-          </span>
-          <span>
             <Link href="/login">Visit Login Page</Link>
           </span>
         </div>

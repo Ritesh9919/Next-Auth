@@ -64,9 +64,6 @@ function Login() {
         </button>
         <div className="flex justify-center items-center text-blue-500">
           <span>
-            <Link href="/">Forgot Password | </Link>
-          </span>
-          <span>
             <Link href="/signup">Visit Signup Page</Link>
           </span>
         </div>
