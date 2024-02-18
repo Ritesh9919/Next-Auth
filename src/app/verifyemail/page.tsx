@@ -35,9 +35,9 @@ function VerifyEmailPage() {
       <h1 className="text-center mt-5 text-lg font-bold">Varify Email</h1>
       <h2 className="text-center bg-orange-400 w-[60%] mx-auto mt-3 py-2 rounded-sm" >{token ? token : "No token"}</h2>
       {verified && (
-        <div>
-          <h2>Email varified</h2>
-          <Link href='/login'>Login</Link>
+        <div className="flex justify-center items-center mt-5 gap-3">
+          <h2 className="font-bold">Email varified</h2>
+          <Link href='/login' className="text-blue-500 underline">Login</Link>
         </div>
       )}
       

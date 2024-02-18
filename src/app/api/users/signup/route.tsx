@@ -21,7 +21,7 @@ export async function POST(request:NextRequest) {
      throw new ApiError(400, 'All fields are required');
   }
 
-  const user = await User.findOne({username})
+  const user = await User.findOne({email})
   if(user) {
     throw new ApiError(400,'User already exist')
   }
@@ -34,7 +34,7 @@ export async function POST(request:NextRequest) {
   })
 
   const savedUser = await newUser.save()
-
+ 
   // Send varification email
   await sendMail({email, emailType:'VERIFY', userId:savedUser._id})
 
