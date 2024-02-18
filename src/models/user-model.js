@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    isVarified:{
+    isVerified:{
         type:Boolean,
         default:false
     },
@@ -26,8 +26,8 @@ const userSchema = new mongoose.Schema({
     },
     forgotPasswordToken:String,
     forgotPasswordTokenExpiry:Date,
-    varifyToken:String,
-    varifyTokenExpiry:Date
+    verifyToken:String,
+    verifyTokenExpiry:Date
 },{timestamps:true});
 
 

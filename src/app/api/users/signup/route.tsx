@@ -4,6 +4,7 @@ import User from "@/models/user-model";
 import {NextResponse,NextRequest} from 'next/server';
 import { ApiError } from "@/helpers/ApiError";
 import {ApiResponse} from '@/helpers/ApiResponse';
+import { sendMail } from "@/helpers/mailer";
 
 
 
@@ -33,6 +34,9 @@ export async function POST(request:NextRequest) {
   })
 
   const savedUser = await newUser.save()
+
+  // Send varification email
+  await sendMail({email, emailType:'VERIFY', userId:savedUser._id})
 
   return NextResponse.json(new ApiResponse(201,savedUser,'Signup successfull'))
   } catch (error:any) {
